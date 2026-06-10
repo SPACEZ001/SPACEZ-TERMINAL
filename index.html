@@ -24,9 +24,7 @@
       overflow-x: hidden;
     }
 
-    /* ════════════════════════════════
-       DRAWER OVERLAY
-    ════════════════════════════════ */
+    /* ── Overlay & Drawer ── */
     .overlay {
       position: fixed; inset: 0;
       background: rgba(0,0,0,0.6);
@@ -37,11 +35,9 @@
     }
     .overlay.open { opacity: 1; pointer-events: all; }
 
-    /* ── Drawer ── */
     .drawer {
       position: fixed; top: 0; right: 0;
-      width: min(320px, 88vw);
-      height: 100vh;
+      width: min(320px, 88vw); height: 100vh;
       background: #161616;
       border-left: 1px solid var(--border);
       z-index: 100;
@@ -68,7 +64,6 @@
     }
     .close-btn:hover { color: var(--text); border-color: var(--lime); }
 
-    /* drawer nav tabs */
     .drawer-tabs {
       display: flex; gap: 6px;
       padding: 14px 16px;
@@ -82,17 +77,14 @@
       font-family: 'IBM Plex Sans Thai', sans-serif;
       font-size: 0.8rem; font-weight: 600;
       color: var(--muted); cursor: pointer;
-      transition: all 0.15s;
-      text-align: center;
+      transition: all 0.15s; text-align: center;
     }
     .dtab.active { background: var(--lime); color: #111; border-color: var(--lime); }
     .dtab:hover:not(.active) { border-color: var(--lime); color: var(--text); }
 
-    /* drawer pages */
     .dpage { display: none; padding: 20px 18px; flex-direction: column; gap: 14px; }
     .dpage.active { display: flex; }
 
-    /* about section */
     .about-avatar {
       width: 64px; height: 64px;
       background: var(--lime); border-radius: 16px;
@@ -112,7 +104,6 @@
     .info-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; }
     .info-val { font-size: 0.88rem; font-weight: 600; }
 
-    /* contact form */
     .field-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
     .field-group { display: flex; flex-direction: column; }
     input, textarea {
@@ -120,8 +111,7 @@
       border-radius: 10px; padding: 11px 14px;
       color: var(--text); font-family: 'IBM Plex Sans Thai', sans-serif;
       font-size: 0.88rem; outline: none;
-      transition: border-color 0.15s;
-      width: 100%;
+      transition: border-color 0.15s; width: 100%;
     }
     input:focus, textarea:focus { border-color: var(--lime); }
     textarea { resize: none; height: 90px; }
@@ -140,16 +130,12 @@
       font-size: 0.85rem; color: var(--lime);
     }
 
-    /* ════════════════════════════════
-       MAIN CONTENT
-    ════════════════════════════════ */
+    /* ── Main ── */
     .main {
       display: flex; flex-direction: column;
       align-items: center;
       padding-bottom: 60px;
     }
-
-    /* top bar */
     .topbar {
       width: 100%;
       background: #161616;
@@ -172,8 +158,7 @@
       border-radius: 9px; cursor: pointer;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 5px;
-      transition: border-color 0.15s;
-      flex-shrink: 0;
+      transition: border-color 0.15s; flex-shrink: 0;
     }
     .hamburger:hover { border-color: var(--lime); }
     .hamburger span {
@@ -183,9 +168,8 @@
     }
     .hamburger:hover span { background: var(--lime); }
 
-    /* section label */
     .section-label {
-      width: 100%; max-width: 860px; align-self: center;
+      width: 100%; max-width: 860px;
       padding: 24px 20px 12px;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.72rem; font-weight: 700;
@@ -199,13 +183,15 @@
       font-size: 0.68rem; color: var(--muted);
     }
 
-    /* card grid */
+    /* ── Grid ── */
     .grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 14px;
       width: 100%; max-width: 860px;
       padding: 0 20px;
     }
+
+    /* ── Card ── */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -238,7 +224,7 @@
     .dot.r { background: #ff5f57; }
     .dot.y { background: #febc2e; }
     .dot.g { background: #28c840; }
-    .browser-content { height: 44px; }
+    .browser-content { height: 44px; background: #444; }
     .card-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 2px; }
     .card-title {
       font-family: 'IBM Plex Mono', monospace;
@@ -246,7 +232,7 @@
     }
     .card-sub { font-size: 0.75rem; color: var(--muted); }
 
-    /* action buttons */
+    /* ── Actions ── */
     .actions {
       width: 100%; max-width: 860px;
       padding: 14px 20px 0;
@@ -269,21 +255,14 @@
       text-align: center; cursor: default;
     }
 
-    /* ── Random button ── */
-    .random-wrap {
-      width: 100%; max-width: 860px;
-      padding: 14px 20px 0;
-    }
+    /* ── Random ── */
+    .random-wrap { width: 100%; max-width: 860px; padding: 14px 20px 0; }
     .btn-random {
-      width: 100%;
-      background: transparent;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 15px;
-      color: var(--text);
+      width: 100%; background: transparent;
+      border: 2px solid var(--border); border-radius: 12px;
+      padding: 15px; color: var(--text);
       font-family: 'IBM Plex Sans Thai', sans-serif;
-      font-weight: 700; font-size: 0.95rem;
-      cursor: pointer;
+      font-weight: 700; font-size: 0.95rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 10px;
       transition: border-color 0.2s, color 0.2s;
       position: relative; overflow: hidden;
@@ -292,40 +271,26 @@
     .btn-random:hover .dice { animation: spin 0.5s ease; }
     .btn-random.rolling { border-color: var(--lime); color: var(--lime); }
     .btn-random.rolling .dice { animation: spin 0.6s ease infinite; }
-
-    /* shimmer sweep on hover */
     .btn-random::after {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(90deg, transparent 0%, rgba(200,241,53,0.08) 50%, transparent 100%);
       transform: translateX(-100%);
-      transition: none;
     }
-    .btn-random:hover::after {
-      animation: shimmer 0.6s ease forwards;
-    }
-    @keyframes shimmer {
-      to { transform: translateX(100%); }
-    }
+    .btn-random:hover::after { animation: shimmer 0.6s ease forwards; }
+    @keyframes shimmer { to { transform: translateX(100%); } }
     @keyframes spin {
       0%   { transform: rotate(0deg) scale(1); }
       40%  { transform: rotate(180deg) scale(1.3); }
       100% { transform: rotate(360deg) scale(1); }
     }
-    .dice { font-size: 1.2rem; display: inline-block; }
-
-    /* flash highlight on selected card */
     @keyframes flashCard {
       0%   { border-color: var(--lime); box-shadow: 0 0 0 0 rgba(200,241,53,0.6); }
       50%  { border-color: var(--lime); box-shadow: 0 0 0 8px rgba(200,241,53,0); }
       100% { border-color: var(--lime); box-shadow: none; }
     }
-    .card.picked {
-      animation: flashCard 0.7s ease forwards;
-      border-color: var(--lime);
-    }
+    .card.picked { animation: flashCard 0.7s ease forwards; border-color: var(--lime); }
+    .dice { font-size: 1.2rem; display: inline-block; }
 
-    /* rolling counter overlay */
     .roll-overlay {
       position: fixed; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -337,15 +302,13 @@
       background: #111; border: 2px solid var(--lime);
       border-radius: 20px; padding: 18px 40px;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 2rem; font-weight: 700;
-      color: var(--lime);
+      font-size: 2rem; font-weight: 700; color: var(--lime);
       box-shadow: 0 0 40px rgba(200,241,53,0.3);
     }
   </style>
 </head>
 <body>
 
-<!-- ── Overlay & Drawer ── -->
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-header">
@@ -356,68 +319,29 @@
     <button class="dtab active" onclick="switchTab('about',this)">เกี่ยวกับ</button>
     <button class="dtab" onclick="switchTab('contact',this)">ติดต่อ</button>
   </div>
-
-  <!-- About page -->
   <div class="dpage active" id="tab-about">
     <div class="about-avatar">S</div>
     <div class="about-name">SPACEZ</div>
     <div class="about-desc">แพลตฟอร์มรวมข้อสอบ CEWA<br>ออกแบบมาให้ทำข้อสอบได้ง่ายและรวดเร็ว</div>
-
-    <div class="info-row">
-      <span class="info-icon">👤</span>
-      <div>
-        <div class="info-label">SPACEZ</div>
-        <div class="info-val">Noraset Boikaw</div>
-      </div>
-    </div>
-    <div class="info-row">
-      <span class="info-icon">🎓</span>
-      <div>
-        <div class="info-label">สถาบัน</div>
-        <div class="info-val">มหาวิทยาลัย / สถาบัน</div>
-      </div>
-    </div>
-    <div class="info-row">
-      <span class="info-icon">📧</span>
-      <div>
-        <div class="info-label">อีเมล</div>
-        <div class="info-val">email@example.com</div>
-      </div>
-    </div>
-    <div class="info-row">
-      <span class="info-icon">🔗</span>
-      <div>
-        <div class="info-label">GitHub</div>
-        <div class="info-val">github.com/SPACEZ001</div>
-      </div>
-    </div>
+    <div class="info-row"><span class="info-icon">👤</span><div><div class="info-label">ชื่อ</div><div class="info-val">ชื่อของคุณ</div></div></div>
+    <div class="info-row"><span class="info-icon">🎓</span><div><div class="info-label">สถาบัน</div><div class="info-val">มหาวิทยาลัย / สถาบัน</div></div></div>
+    <div class="info-row"><span class="info-icon">📧</span><div><div class="info-label">อีเมล</div><div class="info-val">email@example.com</div></div></div>
+    <div class="info-row"><span class="info-icon">🔗</span><div><div class="info-label">GitHub</div><div class="info-val">github.com/username</div></div></div>
   </div>
-
-  <!-- Contact page -->
   <div class="dpage" id="tab-contact">
-    <div class="field-group">
-      <div class="field-label">ชื่อ</div>
-      <input type="text" placeholder="ชื่อของคุณ" id="c-name" />
-    </div>
-    <div class="field-group">
-      <div class="field-label">อีเมล</div>
-      <input type="email" placeholder="email@example.com" id="c-email" />
-    </div>
-    <div class="field-group">
-      <div class="field-label">ข้อความ</div>
-      <textarea placeholder="พิมพ์ข้อความ..." id="c-msg"></textarea>
-    </div>
+    <div class="field-group"><div class="field-label">ชื่อ</div><input type="text" placeholder="ชื่อของคุณ" id="c-name" /></div>
+    <div class="field-group"><div class="field-label">อีเมล</div><input type="email" placeholder="email@example.com" id="c-email" /></div>
+    <div class="field-group"><div class="field-label">ข้อความ</div><textarea placeholder="พิมพ์ข้อความ..." id="c-msg"></textarea></div>
     <button class="send-btn" onclick="sendContact()">ส่งข้อความ</button>
     <div class="success-msg" id="success-msg">✅ ส่งสำเร็จแล้ว! ขอบคุณที่ติดต่อมา</div>
   </div>
 </div>
 
-<!-- ── Main ── -->
 <div class="main">
   <div class="topbar">
     <div class="logo-badge">S</div>
     <span class="logo-text">SPACEZ</span>
-    <span class="logo-sub">exam</span>
+    <span class="logo-sub">exam hub</span>
     <button class="hamburger" onclick="openDrawer()" aria-label="เมนู">
       <span></span><span></span><span></span>
     </button>
@@ -425,70 +349,61 @@
 
   <div class="section-label">
     Images &amp; Exams
-    <span class="count">4 ชุด</span>
+    <span class="count">10 ชุด</span>
   </div>
 
   <div class="grid" id="cardGrid">
+
     <a class="card" href="CEWA1.html" data-name="CEWA1" tabindex="0">
-      <div class="card-preview">
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <div class="browser-content" style="background:var(--lime);"></div>
-        </div>
-      </div>
-      <div class="card-body">
-        <span class="card-title">CEWA1</span>
-        <span class="card-sub">ข้อสอบชุดที่ 1</span>
-      </div>
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA1</span><span class="card-sub">ข้อสอบชุดที่ 1</span></div>
     </a>
+
     <a class="card" href="CEWA2.html" data-name="CEWA2" tabindex="0">
-      <div class="card-preview">
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <div class="browser-content" style="background:#444;"></div>
-        </div>
-      </div>
-      <div class="card-body">
-        <span class="card-title">CEWA2</span>
-        <span class="card-sub">ข้อสอบชุดที่ 2</span>
-      </div>
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA2</span><span class="card-sub">ข้อสอบชุดที่ 2</span></div>
     </a>
+
     <a class="card" href="CEWA3.html" data-name="CEWA3" tabindex="0">
-      <div class="card-preview">
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <div class="browser-content" style="background:#444;"></div>
-        </div>
-      </div>
-      <div class="card-body">
-        <span class="card-title">CEWA3</span>
-        <span class="card-sub">ข้อสอบชุดที่ 3</span>
-      </div>
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA3</span><span class="card-sub">ข้อสอบชุดที่ 3</span></div>
     </a>
+
     <a class="card" href="CEWA4.html" data-name="CEWA4" tabindex="0">
-      <div class="card-preview">
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <div class="browser-content" style="background:#444;"></div>
-        </div>
-      </div>
-      <div class="card-body">
-        <span class="card-title">CEWA4</span>
-        <span class="card-sub">ข้อสอบชุดที่ 4</span>
-      </div>
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA4</span><span class="card-sub">ข้อสอบชุดที่ 4</span></div>
     </a>
-     <a class="card" href="CEWA5.html" data-name="CEWA5" tabindex="0">
-      <div class="card-preview">
-        <div class="browser-mock">
-          <div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <div class="browser-content" style="background:#444;"></div>
-        </div>
-      </div>
-      <div class="card-body">
-        <span class="card-title">CEWA5</span>
-        <span class="card-sub">ข้อสอบชุดที่ 5</span>
-      </div>
+
+    <a class="card" href="CEWA5.html" data-name="CEWA5" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA5</span><span class="card-sub">ข้อสอบชุดที่ 5</span></div>
     </a>
+
+    <a class="card" href="CEWA6.html" data-name="CEWA6" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA6</span><span class="card-sub">ข้อสอบชุดที่ 6</span></div>
+    </a>
+
+    <a class="card" href="CEWA7.html" data-name="CEWA7" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA7</span><span class="card-sub">ข้อสอบชุดที่ 7</span></div>
+    </a>
+
+    <a class="card" href="CEWA8.html" data-name="CEWA8" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA8</span><span class="card-sub">ข้อสอบชุดที่ 8</span></div>
+    </a>
+
+    <a class="card" href="CEWA9.html" data-name="CEWA9" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA9</span><span class="card-sub">ข้อสอบชุดที่ 9</span></div>
+    </a>
+
+    <a class="card" href="CEWA10.html" data-name="CEWA10" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA10</span><span class="card-sub">ข้อสอบชุดที่ 10</span></div>
+    </a>
+
   </div>
 
   <div class="actions">
@@ -496,7 +411,6 @@
     <div class="btn-ghost">Clear slot</div>
   </div>
 
-  <!-- Random button -->
   <div class="random-wrap">
     <button class="btn-random" id="randomBtn" onclick="rollRandom()">
       <span class="dice">🎲</span> สุ่มข้อสอบ
@@ -504,15 +418,13 @@
   </div>
 </div>
 
-<!-- Roll overlay -->
 <div class="roll-overlay" id="rollOverlay">
   <div class="roll-pill" id="rollPill">?</div>
 </div>
 
 <script>
-  const exams = ['CEWA1','CEWA2','CEWA3','CEWA4'];
+  const exams = ['CEWA1','CEWA2','CEWA3','CEWA4','CEWA5','CEWA6','CEWA7','CEWA8','CEWA9','CEWA10'];
 
-  // ── Drawer ──
   function openDrawer() {
     document.getElementById('drawer').classList.add('open');
     document.getElementById('overlay').classList.add('open');
@@ -538,39 +450,26 @@
     document.getElementById('c-msg').value = '';
   }
 
-  // ── Random roll ──
   function rollRandom() {
     const btn = document.getElementById('randomBtn');
     const overlay = document.getElementById('rollOverlay');
     const pill = document.getElementById('rollPill');
     const cards = document.querySelectorAll('.card');
-
-    // clear prev
     cards.forEach(c => c.classList.remove('picked'));
     btn.classList.add('rolling');
     overlay.classList.add('show');
-
     const picked = exams[Math.floor(Math.random() * exams.length)];
-    let ticks = 0;
-    const total = 16;
+    let ticks = 0, total = 18;
     const interval = setInterval(() => {
-      const r = exams[Math.floor(Math.random() * exams.length)];
-      pill.textContent = r;
+      pill.textContent = exams[Math.floor(Math.random() * exams.length)];
       ticks++;
       if (ticks >= total) {
         clearInterval(interval);
         pill.textContent = picked;
         btn.classList.remove('rolling');
-
-        // highlight picked card
-        cards.forEach(c => {
-          if (c.dataset.name === picked) c.classList.add('picked');
-        });
-
-        // hide overlay after a beat
+        cards.forEach(c => { if (c.dataset.name === picked) c.classList.add('picked'); });
         setTimeout(() => {
           overlay.classList.remove('show');
-          // navigate
           setTimeout(() => { window.location.href = picked + '.html'; }, 400);
         }, 900);
       }
