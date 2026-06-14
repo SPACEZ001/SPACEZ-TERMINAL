@@ -232,6 +232,29 @@
     }
     .card-sub { font-size: 0.75rem; color: var(--muted); }
 
+    /* ── RGB Glow: brand text + card hover text ── */
+    @keyframes spacezFlow {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    @keyframes spacezGlow {
+      0%, 100% { text-shadow: 0 0 6px rgba(74,222,128,.45), 0 0 14px rgba(34,211,238,.35), 0 0 26px rgba(192,132,252,.3); }
+      50%      { text-shadow: 0 0 10px rgba(74,222,128,.75), 0 0 22px rgba(34,211,238,.6), 0 0 40px rgba(192,132,252,.5); }
+    }
+    .logo-text,
+    .card:hover .card-title,
+    .card:focus .card-title,
+    .card:hover .card-sub,
+    .card:focus .card-sub {
+      background: linear-gradient(90deg, #4ade80, #22d3ee, #818cf8, #c084fc, #4ade80, #22d3ee, #818cf8, #c084fc);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: spacezFlow 6s linear infinite, spacezGlow 3s ease-in-out infinite;
+    }
+
     /* ── Actions ── */
     .actions {
       width: 100%; max-width: 860px;
