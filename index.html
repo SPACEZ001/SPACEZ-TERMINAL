@@ -278,6 +278,45 @@
       text-align: center; cursor: default;
     }
 
+    /* ── Passphrase Random Button ── */
+    .btn-passphrase {
+      position: relative; flex: 1; overflow: hidden;
+      background: linear-gradient(135deg, #16210a, #12241f);
+      border: 1.5px solid var(--lime); border-radius: 10px;
+      padding: 14px;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      color: var(--lime);
+      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      transition: transform 0.18s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .btn-passphrase:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(200,241,53,0.3);
+      border-color: #d8ff45;
+    }
+    .btn-passphrase:active { transform: translateY(0); }
+    .btn-passphrase::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(90deg, transparent, rgba(200,241,53,0.22), transparent);
+      transform: translateX(-120%);
+      animation: pfShimmer 3.2s ease-in-out infinite;
+    }
+    @keyframes pfShimmer {
+      0%   { transform: translateX(-120%); }
+      55%, 100% { transform: translateX(120%); }
+    }
+    .pf-icon {
+      font-size: 1.05rem; z-index: 1;
+      animation: pfPulse 2.2s ease-in-out infinite;
+    }
+    .pf-text { z-index: 1; }
+    @keyframes pfPulse {
+      0%, 100% { filter: drop-shadow(0 0 0 rgba(200,241,53,0)); }
+      50%      { filter: drop-shadow(0 0 7px rgba(200,241,53,0.85)); }
+    }
+
     /* ── Random ── */
     .random-wrap { width: 100%; max-width: 860px; padding: 14px 20px 0; }
     .btn-random {
@@ -313,6 +352,35 @@
     }
     .card.picked { animation: flashCard 0.7s ease forwards; border-color: var(--lime); }
     .dice { font-size: 1.2rem; display: inline-block; }
+
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: cardFadeIn 0.4s ease both; }
+
+    /* ── Pagination ── */
+    .pagination {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px;
+      width: 100%; max-width: 860px;
+      padding: 16px 20px 0;
+    }
+    .page-btn {
+      width: 40px; height: 40px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700; font-size: 0.9rem;
+      color: var(--muted); cursor: pointer;
+      transition: all 0.18s;
+    }
+    .page-btn:hover:not(.active) { border-color: var(--lime); color: var(--text); }
+    .page-btn.active {
+      background: var(--lime); color: #111; border-color: var(--lime);
+      box-shadow: 0 4px 16px rgba(200,241,53,0.3);
+    }
 
     .roll-overlay {
       position: fixed; inset: 0;
@@ -538,115 +606,323 @@
 
   <div class="section-label">
     Images &amp; Exams
-    <span class="count">10 ชุด</span>
+    <span class="count">60 ชุด</span>
   </div>
 
   <div class="grid" id="cardGrid">
 
-    <a class="card" href="CEWA1.html" data-name="CEWA1" tabindex="0">
+    <a class="card" href="CEWA1.html" data-name="CEWA1" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA1</span><span class="card-sub">ข้อสอบชุดที่ 1</span></div>
     </a>
 
-    <a class="card" href="CEWA2.html" data-name="CEWA2" tabindex="0">
+    <a class="card" href="CEWA2.html" data-name="CEWA2" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA2</span><span class="card-sub">ข้อสอบชุดที่ 2</span></div>
     </a>
 
-    <a class="card" href="CEWA3.html" data-name="CEWA3" tabindex="0">
+    <a class="card" href="CEWA3.html" data-name="CEWA3" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA3</span><span class="card-sub">ข้อสอบชุดที่ 3</span></div>
     </a>
 
-    <a class="card" href="CEWA4.html" data-name="CEWA4" tabindex="0">
+    <a class="card" href="CEWA4.html" data-name="CEWA4" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA4</span><span class="card-sub">ข้อสอบชุดที่ 4</span></div>
     </a>
 
-    <a class="card" href="CEWA5.html" data-name="CEWA5" tabindex="0">
+    <a class="card" href="CEWA5.html" data-name="CEWA5" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA5</span><span class="card-sub">ข้อสอบชุดที่ 5</span></div>
     </a>
 
-    <a class="card" href="CEWA6.html" data-name="CEWA6" tabindex="0">
+    <a class="card" href="CEWA6.html" data-name="CEWA6" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA6</span><span class="card-sub">ข้อสอบชุดที่ 6</span></div>
     </a>
 
-    <a class="card" href="CEWA7.html" data-name="CEWA7" tabindex="0">
+    <a class="card" href="CEWA7.html" data-name="CEWA7" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA7</span><span class="card-sub">ข้อสอบชุดที่ 7</span></div>
     </a>
 
-    <a class="card" href="CEWA8.html" data-name="CEWA8" tabindex="0">
+    <a class="card" href="CEWA8.html" data-name="CEWA8" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA8</span><span class="card-sub">ข้อสอบชุดที่ 8</span></div>
     </a>
 
-    <a class="card" href="CEWA9.html" data-name="CEWA9" tabindex="0">
+    <a class="card" href="CEWA9.html" data-name="CEWA9" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA9</span><span class="card-sub">ข้อสอบชุดที่ 9</span></div>
     </a>
 
-    <a class="card" href="CEWA10.html" data-name="CEWA10" tabindex="0">
+    <a class="card" href="CEWA10.html" data-name="CEWA10" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA10</span><span class="card-sub">ข้อสอบชุดที่ 10</span></div>
     </a>
 
-    <a class="card" href="CEWA11.html" data-name="CEWA11" tabindex="0">
+    <a class="card" href="CEWA11.html" data-name="CEWA11" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA11</span><span class="card-sub">ข้อสอบชุดที่ 11</span></div>
     </a>
 
-    <a class="card" href="CEWA12.html" data-name="CEWA12" tabindex="0">
+    <a class="card" href="CEWA12.html" data-name="CEWA12" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA12</span><span class="card-sub">ข้อสอบชุดที่ 12</span></div>
     </a>
 
-    <a class="card" href="CEWA13.html" data-name="CEWA13" tabindex="0">
+    <a class="card" href="CEWA13.html" data-name="CEWA13" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA13</span><span class="card-sub">ข้อสอบชุดที่ 13</span></div>
     </a>
-    
-    <a class="card" href="CEWA14.html" data-name="CEWA14" tabindex="0">
+
+    <a class="card" href="CEWA14.html" data-name="CEWA14" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA14</span><span class="card-sub">ข้อสอบชุดที่ 14</span></div>
     </a>
 
-    <a class="card" href="CEWA15.html" data-name="CEWA15" tabindex="0">
+    <a class="card" href="CEWA15.html" data-name="CEWA15" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA15</span><span class="card-sub">ข้อสอบชุดที่ 15</span></div>
     </a>
 
-    <a class="card" href="CEWA16.html" data-name="CEWA16" tabindex="0">
+    <a class="card" href="CEWA16.html" data-name="CEWA16" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA16</span><span class="card-sub">ข้อสอบชุดที่ 16</span></div>
     </a>
 
-    <a class="card" href="CEWA17.html" data-name="CEWA17" tabindex="0">
+    <a class="card" href="CEWA17.html" data-name="CEWA17" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA17</span><span class="card-sub">ข้อสอบชุดที่ 17</span></div>
     </a>
 
-    <a class="card" href="CEWA18.html" data-name="CEWA18" tabindex="0">
+    <a class="card" href="CEWA18.html" data-name="CEWA18" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA18</span><span class="card-sub">ข้อสอบชุดที่ 18</span></div>
     </a>
 
-    <a class="card" href="CEWA19.html" data-name="CEWA19" tabindex="0">
+    <a class="card" href="CEWA19.html" data-name="CEWA19" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA19</span><span class="card-sub">ข้อสอบชุดที่ 19</span></div>
     </a>
 
-    <a class="card" href="CEWA20.html" data-name="CEWA20" tabindex="0">
+    <a class="card" href="CEWA20.html" data-name="CEWA20" data-page="1" tabindex="0">
       <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
       <div class="card-body"><span class="card-title">CEWA20</span><span class="card-sub">ข้อสอบชุดที่ 20</span></div>
     </a>
 
+    <a class="card" href="CEWA21.html" data-name="CEWA21" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA21</span><span class="card-sub">ข้อสอบชุดที่ 21</span></div>
+    </a>
+
+    <a class="card" href="CEWA22.html" data-name="CEWA22" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA22</span><span class="card-sub">ข้อสอบชุดที่ 22</span></div>
+    </a>
+
+    <a class="card" href="CEWA23.html" data-name="CEWA23" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA23</span><span class="card-sub">ข้อสอบชุดที่ 23</span></div>
+    </a>
+
+    <a class="card" href="CEWA24.html" data-name="CEWA24" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA24</span><span class="card-sub">ข้อสอบชุดที่ 24</span></div>
+    </a>
+
+    <a class="card" href="CEWA25.html" data-name="CEWA25" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA25</span><span class="card-sub">ข้อสอบชุดที่ 25</span></div>
+    </a>
+
+    <a class="card" href="CEWA26.html" data-name="CEWA26" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA26</span><span class="card-sub">ข้อสอบชุดที่ 26</span></div>
+    </a>
+
+    <a class="card" href="CEWA27.html" data-name="CEWA27" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA27</span><span class="card-sub">ข้อสอบชุดที่ 27</span></div>
+    </a>
+
+    <a class="card" href="CEWA28.html" data-name="CEWA28" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA28</span><span class="card-sub">ข้อสอบชุดที่ 28</span></div>
+    </a>
+
+    <a class="card" href="CEWA29.html" data-name="CEWA29" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA29</span><span class="card-sub">ข้อสอบชุดที่ 29</span></div>
+    </a>
+
+    <a class="card" href="CEWA30.html" data-name="CEWA30" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA30</span><span class="card-sub">ข้อสอบชุดที่ 30</span></div>
+    </a>
+
+    <a class="card" href="CEWA31.html" data-name="CEWA31" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA31</span><span class="card-sub">ข้อสอบชุดที่ 31</span></div>
+    </a>
+
+    <a class="card" href="CEWA32.html" data-name="CEWA32" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA32</span><span class="card-sub">ข้อสอบชุดที่ 32</span></div>
+    </a>
+
+    <a class="card" href="CEWA33.html" data-name="CEWA33" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA33</span><span class="card-sub">ข้อสอบชุดที่ 33</span></div>
+    </a>
+
+    <a class="card" href="CEWA34.html" data-name="CEWA34" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA34</span><span class="card-sub">ข้อสอบชุดที่ 34</span></div>
+    </a>
+
+    <a class="card" href="CEWA35.html" data-name="CEWA35" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA35</span><span class="card-sub">ข้อสอบชุดที่ 35</span></div>
+    </a>
+
+    <a class="card" href="CEWA36.html" data-name="CEWA36" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA36</span><span class="card-sub">ข้อสอบชุดที่ 36</span></div>
+    </a>
+
+    <a class="card" href="CEWA37.html" data-name="CEWA37" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA37</span><span class="card-sub">ข้อสอบชุดที่ 37</span></div>
+    </a>
+
+    <a class="card" href="CEWA38.html" data-name="CEWA38" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA38</span><span class="card-sub">ข้อสอบชุดที่ 38</span></div>
+    </a>
+
+    <a class="card" href="CEWA39.html" data-name="CEWA39" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA39</span><span class="card-sub">ข้อสอบชุดที่ 39</span></div>
+    </a>
+
+    <a class="card" href="CEWA40.html" data-name="CEWA40" data-page="2" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA40</span><span class="card-sub">ข้อสอบชุดที่ 40</span></div>
+    </a>
+
+    <a class="card" href="CEWA41.html" data-name="CEWA41" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA41</span><span class="card-sub">ข้อสอบชุดที่ 41</span></div>
+    </a>
+
+    <a class="card" href="CEWA42.html" data-name="CEWA42" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA42</span><span class="card-sub">ข้อสอบชุดที่ 42</span></div>
+    </a>
+
+    <a class="card" href="CEWA43.html" data-name="CEWA43" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA43</span><span class="card-sub">ข้อสอบชุดที่ 43</span></div>
+    </a>
+
+    <a class="card" href="CEWA44.html" data-name="CEWA44" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA44</span><span class="card-sub">ข้อสอบชุดที่ 44</span></div>
+    </a>
+
+    <a class="card" href="CEWA45.html" data-name="CEWA45" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA45</span><span class="card-sub">ข้อสอบชุดที่ 45</span></div>
+    </a>
+
+    <a class="card" href="CEWA46.html" data-name="CEWA46" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA46</span><span class="card-sub">ข้อสอบชุดที่ 46</span></div>
+    </a>
+
+    <a class="card" href="CEWA47.html" data-name="CEWA47" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA47</span><span class="card-sub">ข้อสอบชุดที่ 47</span></div>
+    </a>
+
+    <a class="card" href="CEWA48.html" data-name="CEWA48" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA48</span><span class="card-sub">ข้อสอบชุดที่ 48</span></div>
+    </a>
+
+    <a class="card" href="CEWA49.html" data-name="CEWA49" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA49</span><span class="card-sub">ข้อสอบชุดที่ 49</span></div>
+    </a>
+
+    <a class="card" href="CEWA50.html" data-name="CEWA50" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA50</span><span class="card-sub">ข้อสอบชุดที่ 50</span></div>
+    </a>
+
+    <a class="card" href="CEWA51.html" data-name="CEWA51" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA51</span><span class="card-sub">ข้อสอบชุดที่ 51</span></div>
+    </a>
+
+    <a class="card" href="CEWA52.html" data-name="CEWA52" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA52</span><span class="card-sub">ข้อสอบชุดที่ 52</span></div>
+    </a>
+
+    <a class="card" href="CEWA53.html" data-name="CEWA53" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA53</span><span class="card-sub">ข้อสอบชุดที่ 53</span></div>
+    </a>
+
+    <a class="card" href="CEWA54.html" data-name="CEWA54" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA54</span><span class="card-sub">ข้อสอบชุดที่ 54</span></div>
+    </a>
+
+    <a class="card" href="CEWA55.html" data-name="CEWA55" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA55</span><span class="card-sub">ข้อสอบชุดที่ 55</span></div>
+    </a>
+
+    <a class="card" href="CEWA56.html" data-name="CEWA56" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA56</span><span class="card-sub">ข้อสอบชุดที่ 56</span></div>
+    </a>
+
+    <a class="card" href="CEWA57.html" data-name="CEWA57" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA57</span><span class="card-sub">ข้อสอบชุดที่ 57</span></div>
+    </a>
+
+    <a class="card" href="CEWA58.html" data-name="CEWA58" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA58</span><span class="card-sub">ข้อสอบชุดที่ 58</span></div>
+    </a>
+
+    <a class="card" href="CEWA59.html" data-name="CEWA59" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA59</span><span class="card-sub">ข้อสอบชุดที่ 59</span></div>
+    </a>
+
+    <a class="card" href="CEWA60.html" data-name="CEWA60" data-page="3" tabindex="0">
+      <div class="card-preview"><div class="browser-mock"><div class="browser-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><div class="browser-content"></div></div></div>
+      <div class="card-body"><span class="card-title">CEWA60</span><span class="card-sub">ข้อสอบชุดที่ 60</span></div>
+    </a>
+
+  </div>
+
+  <div class="pagination" id="pagination">
+    <button class="page-btn active" data-page="1" onclick="showPage(1)">1</button>
+    <button class="page-btn" data-page="2" onclick="showPage(2)">2</button>
+    <button class="page-btn" data-page="3" onclick="showPage(3)">3</button>
   </div>
 
   <div class="actions">
-    <a class="btn-primary" href="CEWA1.html">เปิดข้อสอบ</a>
+    <a class="btn-passphrase" href="SPPG.html">
+      <span class="pf-icon">🔐</span><span class="pf-text">ระบบสุ่มพาสเฟส</span>
+    </a>
     <div class="btn-ghost">Clear slot</div>
   </div>
 
@@ -674,6 +950,8 @@
       document.body.style.overflow = 'hidden';
     }
   })();
+
+  document.addEventListener('DOMContentLoaded', () => showPage(1));
 
   function unlock() {
     const input = document.getElementById('pwdInput');
@@ -704,7 +982,23 @@
     inp.type = inp.type === 'password' ? 'text' : 'password';
   }
 
-  const exams = ['CEWA1','CEWA2','CEWA3','CEWA4','CEWA5','CEWA6','CEWA7','CEWA8','CEWA9','CEWA10','CEWA11','CEWA12','CEWA13','CEWA14','CEWA15','CEWA16','CEWA17','CEWA18','CEWA19','CEWA20'];
+  const exams = Array.from({ length: 60 }, (_, i) => 'CEWA' + (i + 1));
+  let currentPage = 1;
+
+  function pageOf(name) {
+    const n = parseInt(name.replace('CEWA', ''), 10);
+    return n <= 20 ? 1 : (n <= 40 ? 2 : 3);
+  }
+
+  function showPage(page) {
+    currentPage = page;
+    document.querySelectorAll('.card').forEach(c => {
+      c.style.display = (parseInt(c.dataset.page, 10) === page) ? '' : 'none';
+    });
+    document.querySelectorAll('.page-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.page, 10) === page);
+    });
+  }
 
   function openDrawer() {
     document.getElementById('drawer').classList.add('open');
@@ -748,6 +1042,7 @@
         clearInterval(interval);
         pill.textContent = picked;
         btn.classList.remove('rolling');
+        showPage(pageOf(picked));
         cards.forEach(c => { if (c.dataset.name === picked) c.classList.add('picked'); });
         setTimeout(() => {
           overlay.classList.remove('show');
@@ -759,4 +1054,3 @@
 </script>
 </body>
 </html>
-
